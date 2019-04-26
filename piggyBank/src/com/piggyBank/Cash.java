@@ -24,6 +24,14 @@ public abstract class Cash
         return value * quantity;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
     @Override
     public String toString()
     {

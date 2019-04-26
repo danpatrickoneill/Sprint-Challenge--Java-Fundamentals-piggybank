@@ -2,6 +2,8 @@ package com.piggyBank;
 
 import java.util.ArrayList;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Main
 {
@@ -16,6 +18,38 @@ public class Main
         }
         return total;
     }
+
+    public static void removeCash(HashMap<String, Integer> piggyBank, Cash c, Integer quantity)
+    {
+        if (!piggyBank.containsKey(c.getName()))
+        {
+            System.out.println("Currency not found");
+        }
+        else
+        {
+            if (quantity > piggyBank.get(c.getName()))
+            {
+                System.out.println("You don't have enough " +  c.getName() + "s");
+            }
+            else
+            {
+                piggyBank.replace(c.getName(), piggyBank.get(c.getName()) - quantity);
+            }
+        }
+    }
+
+    // DOESN'T WORK
+    //public static ArrayList<Cash> convertPB (HashMap<Cash, Integer> piggyBank)
+    //{
+    //    ArrayList<Cash> pb = new ArrayList<Cash>();
+    //
+    //    for (HashMap.Entry<Cash, Integer> entry : piggyBank.entrySet())
+    //    {
+    //        System.out.println(entry.getKey());
+    //
+    //    }
+    //    return pb;
+    //}
 
     public static void main(String[] args)
     {
@@ -36,5 +70,43 @@ public class Main
 
         double totalValue = checkPB(piggyBank);
         System.out.println("The piggy bank holds " + fp.format(totalValue));
+
+        // DEVELOPMENT ON HOLD
+        //HashMap<Cash, Integer> piggyHash = new HashMap<Cash, Integer>();
+        //
+        //for (Cash c : piggyBank)
+        //{
+        //    if (piggyHash.containsKey(c))
+        //    {
+        //        // Add cash value to existing value
+        //        piggyHash.replace(c, piggyHash.get(c) + c.getQuantity());
+        //    }
+        //    else
+        //    {
+        //        // Initialize cash type as key and cash value as value
+        //        piggyHash.put(c, c.getQuantity());
+        //    }
+        //}
+
+        HashMap<String, Integer> piggyHash = new HashMap<String, Integer>();
+
+        for (Cash c : piggyBank)
+        {
+            if (piggyHash.containsKey(c.getName()))
+            {
+                // Add cash value to existing value
+                piggyHash.replace(c.getName(), piggyHash.get(c.getName()) + c.getQuantity());
+            }
+            else
+            {
+                // Initialize cash type as key and cash value as value
+                piggyHash.put(c.getName(), c.getQuantity());
+            }
+        }
+
+        System.out.println(piggyHash.toString());
+        removeCash(piggyHash, new Dollar(), 8);
+        System.out.println(piggyHash.toString());
+
     }
 }
