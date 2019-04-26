@@ -32,6 +32,14 @@ public abstract class Cash
         return quantity;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
     @Override
     public String toString()
     {
