@@ -14,4 +14,10 @@ public class Quarter extends Cash {
         name = "Quarter";
         value = .25;
     }
+
+    @Override
+    public String toString()
+    {
+            return String.format("%d %s", quantity, (quantity == 1) ? name : name + "s");
+    }
 }

@@ -14,4 +14,10 @@ public class Penny extends Cash {
         name = "Penny";
         value = .01;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%d %s", quantity, (quantity == 1) ? name : "Pennies");
+    }
 }
