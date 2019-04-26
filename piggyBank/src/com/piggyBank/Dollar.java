@@ -14,4 +14,9 @@ public class Dollar extends Cash {
         name = "$";
         value = 1.0;
     }
+
+    @Override
+    public String toString() {
+        return name + quantity;
+    }
 }

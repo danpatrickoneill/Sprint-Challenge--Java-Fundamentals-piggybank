@@ -27,6 +27,6 @@ public abstract class Cash
     @Override
     public String toString()
     {
-        return quantity + name;
+        return quantity + " " + name;
     }
 }
